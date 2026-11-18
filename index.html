@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AF7 · Becas</title>
+<meta name="description" content="Becas a las que puede aplicar un estudiante de ITS en la FIME UANL: Benito Juárez, Fundación Telmex Telcel, becas internas FIME y becas del Tec de Monterrey.">
+<meta name="theme-color" content="#f5f1e8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/></symbol>
+</svg>
+
+<a class="skip" href="#becas">Saltar al contenido</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="kicker-row">
+      <span>AF7 · Becas</span>
+      <span>Monterrey, noviembre 2026</span>
+    </div>
+
+    <div class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Guía personal de becas</p>
+        <h1>Becas a las que puedo aplicar <em>siendo estudiante</em></h1>
+        <p class="lede">Reuní cuatro opciones: una del gobierno, una de una fundación privada, las de mi facultad y las de otra universidad. Para cada una anoté lo que da, lo que pide y si me aplica como alumno de la FIME.</p>
+      </div>
+
+      <aside class="credencial" aria-label="Datos del alumno">
+        <div class="cred-top">
+          <svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg>
+          <span>Credencial de estudiante</span>
+        </div>
+        <dl>
+          <div class="cred-nombre"><dt>Nombre</dt><dd>David Alonso Torres Guerrero</dd></div>
+          <div><dt>Matrícula</dt><dd class="num">2144813</dd></div>
+          <div><dt>Carrera</dt><dd>ITS</dd></div>
+          <div class="cred-full"><dt>Facultad</dt><dd>FIME · UANL</dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <nav class="indice" aria-label="Índice de becas">
+      <ol id="indice"></ol>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="becas" class="seccion" aria-labelledby="h-becas">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-num">Capítulo 1</p>
+        <h2 id="h-becas">Las becas</h2>
+        <p class="sec-sub">Filtra por quién la otorga. Cada ficha enlaza a la página oficial.</p>
+      </header>
+      <div class="filtros" role="group" aria-label="Filtrar por tipo">
+        <button type="button" class="chip" aria-pressed="true" data-f="todas">Todas</button>
+        <button type="button" class="chip" aria-pressed="false" data-f="gob">Gobierno</button>
+        <button type="button" class="chip" aria-pressed="false" data-f="privada">Empresa privada</button>
+        <button type="button" class="chip" aria-pressed="false" data-f="facultad">Facultad</button>
+        <button type="button" class="chip" aria-pressed="false" data-f="universidad">Universidad</button>
+      </div>
+      <div class="fichas" id="cards"></div>
+    </div>
+  </section>
+
+  <section id="comparativa" class="seccion" aria-labelledby="h-tabla">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-num">Capítulo 2</p>
+        <h2 id="h-tabla">Comparación rápida</h2>
+        <p class="sec-sub">Las cuatro becas en una sola vista.</p>
+      </header>
+      <div class="tabla-wrap" tabindex="0" role="region" aria-label="Tabla comparativa, desplazable">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Beca</th>
+              <th scope="col">Quién la da</th>
+              <th scope="col">Qué da</th>
+              <th scope="col">Requisito clave</th>
+              <th scope="col">¿Me aplica?</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan" class="seccion" aria-labelledby="h-plan">
+    <div class="wrap plan-grid">
+      <header class="sec-head">
+        <p class="sec-num">Capítulo 3</p>
+        <h2 id="h-plan">Mi plan para aplicar</h2>
+        <p class="sec-sub">En qué orden las voy a intentar y por qué.</p>
+      </header>
+      <ol class="timeline" id="plan-list"></ol>
+    </div>
+  </section>
+
+  <section id="fuentes" class="seccion fuentes-sec" aria-labelledby="h-fuentes">
+    <div class="wrap">
+      <h2 id="h-fuentes" class="fuentes-t">Fuentes</h2>
+      <p class="fuentes-sub">Consultadas el 17 de noviembre de 2026. Los montos y requisitos cambian con cada convocatoria; revisa siempre la página oficial.</p>
+      <ol class="fuentes" id="fuentes-list"></ol>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <span>David Alonso Torres Guerrero · 2144813 · ITS</span>
+    <span>AF7 · Becas · 2026</span>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
