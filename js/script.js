@@ -2,7 +2,7 @@
    LINK DEL PIA: cambia SOLO esta línea para que el botón
    "Ver nuestro PIA" (y el del pie de página) apunten a otra página.
    ========================================================= */
-const PIA_URL = "https://dvdatogro-123.github.io/PIA_PROGWEB_EQ1/";
+const PIA_URL = "https://dvdatogro-123.github.io/AF03-PIA/";
 
 /* ---------- Datos ----------
    Información tomada de las páginas oficiales (consultadas 17/11/2026).
