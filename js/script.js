@@ -1,8 +1,14 @@
+/* =========================================================
+   LINK DEL PIA: cambia SOLO esta línea para que el botón
+   "Ver nuestro PIA" (y el del pie de página) apunten a otra página.
+   ========================================================= */
+const PIA_URL = "https://dvdatogro-123.github.io/PIA_PROGWEB_EQ1/";
+
 /* ---------- Datos ----------
    Información tomada de las páginas oficiales (consultadas 17/11/2026).
    aplica.estado: "si" | "verificar" | "ref" */
 const becas = [
-  { id:"bbj", tipo:"gob", tipoTxt:"Gobierno federal",
+  { id:"bbj", logo:"img/logos/gobmx.svg", logoFondo:"#611232", tipo:"gob", tipoTxt:"Gobierno federal",
     nombre:"Beca Benito Juárez · Jóvenes Escribiendo el Futuro",
     quien:"Coordinación Nacional de Becas para el Bienestar Benito Juárez",
     monto:"$5,800 MXN bimestrales",
@@ -19,7 +25,7 @@ const becas = [
     link:"https://www.gob.mx/becasbenitojuarez/articulos/beca-de-educacion-superior-jovenes-escribiendo-el-futuro", linkTxt:"Página oficial en gob.mx",
     extra:{ href:"https://buscador.becasbenitojuarez.gob.mx/escuelas", txt:"Buscador de escuelas" } },
 
-  { id:"ftt", tipo:"privada", tipoTxt:"Empresa privada",
+  { id:"ftt", logo:"img/logos/telmex.png", tipo:"privada", tipoTxt:"Empresa privada",
     nombre:"Beca Fundación Telmex Telcel",
     quien:"Fundación Telmex Telcel (Fundación Carlos Slim)",
     monto:"Apoyo económico mensual + equipo",
@@ -36,7 +42,7 @@ const becas = [
     link:"https://fundacioncarlosslim.org/becas/fundacion-telmex-telcel/", linkTxt:"Página oficial de la fundación",
     extra:{ href:"https://downloads.telmex.com/pdf/BECA-FUNDACION-TELMEX-TELCEL-2026.pdf", txt:"Convocatoria 2026 (PDF)" } },
 
-  { id:"fime", tipo:"facultad", tipoTxt:"Facultad",
+  { id:"fime", logo:"img/logos/fime.png", tipo:"facultad", tipoTxt:"Facultad",
     nombre:"Becas internas FIME",
     quien:"Coordinación Administrativa de Becas, FIME UANL",
     monto:"6 tipos de beca",
@@ -53,7 +59,7 @@ const becas = [
     link:"https://www.fime.uanl.mx/tramites/becas/", linkTxt:"Becas en fime.uanl.mx",
     extra:{ href:"https://www.fime.uanl.mx/tramites/becas-academicas/", txt:"Becas académicas" } },
 
-  { id:"tec", tipo:"universidad", tipoTxt:"Universidad",
+  { id:"tec", logo:"img/logos/tec.png", tipo:"universidad", tipoTxt:"Universidad",
     nombre:"Becas Tec de Monterrey",
     quien:"Tecnológico de Monterrey",
     monto:"7 becas + préstamo educativo",
@@ -104,12 +110,14 @@ const pad = n => String(n).padStart(2, "0");
 const ESTADO = { si:"Me aplica", verificar:"Por verificar", ref:"Referencia" };
 const nuevaPestana = '<span class="sr-only">(se abre en otra pestaña)</span>';
 const corto = b => b.nombre.split(" · ")[0];
+const logo = (b, cls = "logo") =>
+  `<span class="${cls}"${b.logoFondo ? ` style="background:${b.logoFondo}"` : ""}><img src="${esc(b.logo)}" alt="Logo de ${esc(b.quien)}" loading="lazy"></span>`;
 
 /* ---------- Índice del encabezado ---------- */
 document.getElementById("indice").innerHTML = becas.map((b, i) => `
   <li>
     <a href="#beca-${b.id}">
-      <span class="ind-num">${pad(i + 1)}</span>
+      <span class="ind-top"><span class="ind-num">${pad(i + 1)}</span>${logo(b, "logo logo-sm")}</span>
       <span class="ind-nombre">${esc(corto(b))}</span>
       <span class="sello sello-${b.aplica.estado}">${ESTADO[b.aplica.estado]}</span>
     </a>
@@ -119,7 +127,10 @@ document.getElementById("indice").innerHTML = becas.map((b, i) => `
 document.getElementById("cards").innerHTML = becas.map((b, i) => `
   <article class="ficha" data-tipo="${b.tipo}" id="beca-${b.id}" aria-labelledby="t-${b.id}">
     <div class="ficha-id">
-      <span class="ficha-num" aria-hidden="true">${pad(i + 1)}</span>
+      <div class="ficha-top">
+        <span class="ficha-num" aria-hidden="true">${pad(i + 1)}</span>
+        ${logo(b)}
+      </div>
       <p class="tipo">${esc(b.tipoTxt)}</p>
       <h3 id="t-${b.id}">${esc(b.nombre)}</h3>
       <p class="quien">${esc(b.quien)}</p>
@@ -150,10 +161,10 @@ document.getElementById("cards").innerHTML = becas.map((b, i) => `
       </div>
 
       <div class="acciones">
-        <a class="btn" href="${esc(b.link)}" target="_blank" rel="noopener noreferrer">
+        <a class="btn btn-oficial" data-sitio="${esc(corto(b))}" href="${esc(b.link)}" target="_blank" rel="noopener noreferrer">
           <span>${esc(b.linkTxt)}</span>${icon("arrow")}${nuevaPestana}
         </a>
-        ${b.extra ? `<a class="btn btn-sec" href="${esc(b.extra.href)}" target="_blank" rel="noopener noreferrer">
+        ${b.extra ? `<a class="btn btn-sec btn-oficial" data-sitio="${esc(corto(b))}" href="${esc(b.extra.href)}" target="_blank" rel="noopener noreferrer">
           <span>${esc(b.extra.txt)}</span>${icon("arrow")}${nuevaPestana}
         </a>` : ""}
       </div>
@@ -173,7 +184,7 @@ chips.forEach(ch => ch.addEventListener("click", () => {
 /* ---------- Tabla ---------- */
 document.getElementById("tbody").innerHTML = becas.map(b => `
   <tr>
-    <th scope="row">${esc(corto(b))}</th>
+    <th scope="row"><span class="th-beca">${logo(b, "logo logo-sm")}${esc(corto(b))}</span></th>
     <td>${esc(b.tipoTxt)}</td>
     <td>${esc(tabla[b.id].da)}</td>
     <td>${esc(tabla[b.id].req)}</td>
@@ -194,9 +205,52 @@ document.getElementById("plan-list").innerHTML = plan.map((p, i) => `
 document.getElementById("fuentes-list").innerHTML = fuentes.map(([t, u]) => `
   <li><a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(t)}${nuevaPestana}</a> <span class="url">${esc(u.replace(/^https?:\/\//, ""))}</span></li>`).join("");
 
+/* ---------- ALERTAS ---------- */
+const sinAcentos = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+const normal = t => sinAcentos(t).toLowerCase().trim();
+const abrir = url => window.open(url, "_blank", "noopener");
+
+// 1) Buscador: si encuentra la beca, una alerta pregunta si quieres ir a su página oficial
+document.getElementById("lista-becas").innerHTML =
+  becas.map(b => `<option value="${esc(corto(b))}"></option>`).join("");
+
+document.getElementById("buscador").addEventListener("submit", ev => {
+  ev.preventDefault();
+  const q = normal(document.getElementById("q").value);
+  if (!q) return;
+  const b = becas.find(x => normal(x.nombre + " " + x.quien + " " + x.tipoTxt).includes(q));
+  if (!b) {
+    alert(`No encontré ninguna beca con "${q}".\n\nLas becas de esta página son:\n• ${becas.map(corto).join("\n• ")}`);
+    return;
+  }
+  if (confirm(`Beca encontrada: ${corto(b)}\nLa otorga: ${b.quien}\nEstado: ${ESTADO[b.aplica.estado]}\n\n¿Quieres ir a su página oficial?\n${b.link}`)) {
+    abrir(b.link);
+  } else {
+    chips[0].click();                                   // quita el filtro por si estaba oculta
+    const ficha = document.getElementById("beca-" + b.id);
+    ficha.scrollIntoView({ behavior: "smooth", block: "start" });
+    ficha.classList.remove("destacar"); void ficha.offsetWidth; ficha.classList.add("destacar");
+  }
+});
+
+// 2) Botones de páginas oficiales: alerta antes de salir del sitio
+document.addEventListener("click", ev => {
+  const a = ev.target.closest("a.btn-oficial");
+  if (a && !confirm(`Vas a salir de esta página para ver la información oficial de ${a.dataset.sitio}.\n\n¿Continuar?`)) ev.preventDefault();
+});
+
+// 3) Botones del PIA: alerta y redirección a la página del PIA
+["btn-pia", "footer-pia"].forEach(id => {
+  const a = document.getElementById(id);
+  a.href = PIA_URL;
+  a.addEventListener("click", ev => {
+    if (!confirm("Vas a ir a la página de nuestro PIA (Programación Web, equipo 1).\n\n¿Quieres continuar?")) ev.preventDefault();
+  });
+});
+
 /* ---------- Aparición suave al hacer scroll ---------- */
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
-  const targets = document.querySelectorAll(".sec-head, .ficha, .tabla-wrap, .timeline li");
+  const targets = document.querySelectorAll(".sec-head, .ficha, .tabla-wrap, .timeline li, .foto");
   targets.forEach(el => el.classList.add("reveal"));
   const io = new IntersectionObserver(entries => {
     entries.forEach(en => {

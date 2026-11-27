@@ -85,6 +85,51 @@ h1{
 h1 em{font-style:italic;font-weight:400;color:var(--accent)}
 .lede{margin-top:var(--s-5);max-width:54ch;font-size:var(--t-lg);line-height:1.55;color:var(--ink-2)}
 
+/* Buscador + botón del PIA */
+.hero-actions{display:flex;flex-wrap:wrap;gap:var(--s-3);margin-top:var(--s-6)}
+.buscador{
+  flex:1 1 20rem;max-width:30rem;display:flex;align-items:center;gap:var(--s-2);
+  padding-left:var(--s-4);background:var(--card);
+  border:1px solid var(--rule);border-radius:999px;box-shadow:var(--shadow);
+  transition:border-color .2s,box-shadow .2s;
+}
+.buscador:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.buscador > .ic{color:var(--ink-3)}
+.buscador input{flex:1;min-width:0;height:2.75rem;border:0;outline:0;background:none;font:400 var(--t-sm) var(--sans);color:var(--ink)}
+.buscador input::placeholder{color:var(--ink-3)}
+.buscador button{
+  align-self:stretch;margin:.25rem;padding:0 var(--s-4);border:0;border-radius:999px;
+  background:var(--ink);color:var(--paper);font:600 var(--t-sm) var(--sans);cursor:pointer;
+  transition:background-color .2s;
+}
+.buscador button:hover{background:var(--accent)}
+.btn.btn-pia{background:transparent;color:var(--accent);border-color:var(--accent)}
+.btn.btn-pia:hover{background:var(--accent);color:var(--accent-ink)}
+
+/* Logos */
+.logo{
+  flex:none;display:grid;place-items:center;width:3.5rem;height:3.5rem;padding:.45rem;
+  background:#fff;border:1px solid var(--rule);border-radius:12px;
+}
+.logo img{display:block;max-width:100%;max-height:100%;object-fit:contain}
+.logo:has(img[src*=telmex]),.logo:has(img[src*=gobmx]){width:7.5rem}
+.logo-sm{width:2rem;height:2rem;padding:.25rem;border-radius:7px}
+.logo-sm:has(img[src*=telmex]),.logo-sm:has(img[src*=gobmx]){width:4.5rem}
+.ficha-top{display:flex;align-items:center;justify-content:space-between;align-self:stretch;margin-bottom:var(--s-2)}
+.ficha-top .ficha-num{margin-bottom:0}
+.ind-top{display:flex;align-items:center;justify-content:space-between;align-self:stretch}
+.th-beca{display:inline-flex;align-items:center;gap:var(--s-3)}
+.ficha.destacar{animation:destacar 1.8s var(--ease)}
+@keyframes destacar{0%,40%{box-shadow:0 0 0 4px var(--accent)}100%{box-shadow:var(--shadow)}}
+
+/* Galería */
+.galeria{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:1fr 1fr;gap:var(--s-4)}
+.foto{margin:0;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.foto-grande{grid-row:span 2}
+.foto img{display:block;width:100%;flex:1;min-height:0;object-fit:cover;filter:sepia(.12) saturate(.9)}
+.foto figcaption{padding:var(--s-3) var(--s-4);font-family:var(--serif);font-style:italic;font-size:var(--t-sm);color:var(--ink-2);border-top:1px solid var(--rule)}
+.creditos{margin-top:var(--s-3);font-size:var(--t-xs);color:var(--ink-3)}
+
 /* Credencial */
 .credencial{
   position:relative;
@@ -257,6 +302,7 @@ tbody tr:hover{background:var(--paper)}
 /* ---------- Pie ---------- */
 .footer{background:var(--ink);color:var(--paper-2)}
 .footer-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-2);padding-block:var(--s-5);font-size:var(--t-sm)}
+.footer-pia{color:var(--paper);font-weight:600}
 
 /* ---------- Aparición ---------- */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s var(--ease)}
@@ -274,6 +320,9 @@ tbody tr:hover{background:var(--paper)}
   .ficha-num{font-size:2.5rem}
   .plan-grid{grid-template-columns:1fr;gap:0}
   .plan-grid .sec-head{position:static}
+  .galeria{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .foto-grande{grid-column:1 / -1;grid-row:auto}
+  .foto img{aspect-ratio:16/10;flex:none}
 }
 @media (max-width:40rem){
   .wrap{padding:0 var(--s-4)}
@@ -282,6 +331,8 @@ tbody tr:hover{background:var(--paper)}
   .ficha-cuerpo{padding:var(--s-5) var(--s-4)}
   .cols{grid-template-columns:1fr;gap:var(--s-5)}
   .acciones .btn{width:100%;justify-content:space-between}
+  .galeria{grid-template-columns:1fr}
+  .btn.btn-pia{flex:1 1 100%;justify-content:center}
   .indice a{padding:var(--s-3)}
   .ind-nombre{font-size:var(--t-md)}
 }
@@ -290,4 +341,5 @@ tbody tr:hover{background:var(--paper)}
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none;transition:none}
   .btn .ic,.timeline h3 a{transition:none}
+  .ficha.destacar{animation:none}
 }

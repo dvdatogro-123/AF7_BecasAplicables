@@ -17,6 +17,8 @@
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
   <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/></symbol>
 </svg>
 
@@ -34,6 +36,19 @@
         <p class="eyebrow">Guía personal de becas</p>
         <h1>Becas a las que puedo aplicar <em>siendo estudiante</em></h1>
         <p class="lede">Reuní cuatro opciones: una del gobierno, una de una fundación privada, las de mi facultad y las de otra universidad. Para cada una anoté lo que da, lo que pide y si me aplica como alumno de la FIME.</p>
+
+        <div class="hero-actions">
+          <form class="buscador" id="buscador" role="search" aria-label="Buscar beca">
+            <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
+            <label for="q" class="sr-only">Buscar beca</label>
+            <input id="q" name="q" type="search" list="lista-becas" placeholder="Busca una beca: Telmex, FIME, Tec…" autocomplete="off" required>
+            <datalist id="lista-becas"></datalist>
+            <button type="submit">Buscar</button>
+          </form>
+          <a class="btn btn-pia" id="btn-pia" href="#" target="_blank" rel="noopener noreferrer">
+            <svg class="ic" aria-hidden="true"><use href="#i-folder"/></svg><span>Ver nuestro PIA</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">(se abre en otra pestaña)</span>
+          </a>
+        </div>
       </div>
 
       <aside class="credencial" aria-label="Datos del alumno">
@@ -57,6 +72,31 @@
 </header>
 
 <main>
+  <section id="fotos" class="seccion" aria-labelledby="h-fotos">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-num">Antes de empezar</p>
+        <h2 id="h-fotos">Para qué sirve una beca</h2>
+        <p class="sec-sub">Una beca paga parte de lo que cuesta estudiar: colegiatura, transporte, materiales o equipo. Así quedan más horas para la biblioteca y menos para un segundo empleo.</p>
+      </header>
+      <div class="galeria">
+        <figure class="foto foto-grande">
+          <img src="img/fotos/biblioteca.jpg" width="1100" height="733" loading="lazy" alt="Biblioteca universitaria llena de estudiantes trabajando en mesas largas">
+          <figcaption>Tiempo para estudiar en lugar de trabajar horas extra.</figcaption>
+        </figure>
+        <figure class="foto">
+          <img src="img/fotos/estudiando.jpg" width="1100" height="732" loading="lazy" alt="Dos estudiantes estudian con libros y apuntes en una mesa de la biblioteca">
+          <figcaption>Promedio alto: el requisito que más se repite.</figcaption>
+        </figure>
+        <figure class="foto">
+          <img src="img/fotos/grupo.jpg" width="1100" height="825" loading="lazy" alt="Grupo de estudiantes repasando juntos con una laptop y cuadernos">
+          <figcaption>Equipo de cómputo: lo incluye la beca Telmex Telcel.</figcaption>
+        </figure>
+      </div>
+      <p class="creditos">Fotos: Gary Todd (CC0), Tulane Public Relations (CC BY 2.0) y KSULib (CC BY 2.0), vía Wikimedia Commons.</p>
+    </div>
+  </section>
+
   <section id="becas" class="seccion" aria-labelledby="h-becas">
     <div class="wrap">
       <header class="sec-head">
@@ -122,6 +162,7 @@
 <footer class="footer">
   <div class="wrap footer-in">
     <span>David Alonso Torres Guerrero · 2144813 · ITS</span>
+    <a class="footer-pia" id="footer-pia" href="#" target="_blank" rel="noopener noreferrer">PIA del equipo ↗</a>
     <span>AF7 · Becas · 2026</span>
   </div>
 </footer>
